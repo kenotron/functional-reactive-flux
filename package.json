@@ -1,0 +1,25 @@
+{
+  "name": "functional-reactive-flux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node_modules/.bin/tsc src",
+    "start": "node_modules/.bin/tsc -w src"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mobservable": "^1.2.5",
+    "mobservable-react": "^2.1.5",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "systemjs": "^0.19.22",
+    "todomvc-app-css": "^2.0.4",
+    "todomvc-common": "^1.0.2"
+  },
+  "devDependencies": {
+    "http-server": "^0.9.0",
+    "typescript": "^1.8.2"
+  }
+}
