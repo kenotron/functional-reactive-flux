@@ -9,15 +9,19 @@ export default class RemoveAllCompleted implements Mutator {
         let items = Store.getState().items;
         let numberOfSplicedItems = 0;
         
-        for (var item of items) {
-            if (item.completed) {
-                items.splice(index, 1);
-                numberOfSplicedItems++;
-            } else {
-                index++;    
+        if (items.length > 0) {
+            let item = items[0];
+            
+            while (item != null) {
+                if (item.completed) {
+                    items.splice(index, 1);
+                    numberOfSplicedItems++;
+                } else {
+                    index++;    
+                }    
+                
+                item = items[index];
             }
         }
-        
-        Store.getState().itemsLeft = Math.max(0, Store.getState().itemsLeft - numberOfSplicedItems);
     }
 }

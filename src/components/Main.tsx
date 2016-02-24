@@ -4,6 +4,9 @@ import {observer} from 'mobservable-react';
 import ToggleCompleted from '../mutators/toggleCompleted';
 import RemoveItem from '../mutators/removeItem';
 import ToggleAllCompleted from '../mutators/toggleAllCompleted';
+import ToggleEditItem from '../mutators/toggleEditItem';
+import UpdateEditItemValue from '../mutators/updateEditItemValue';
+import UpdateItem from '../mutators/UpdateItem';
 import {FilterType} from '../store/schema';
 
 @observer
@@ -20,8 +23,31 @@ export default class Main extends React.Component<any, any> {
         Store.dispatch(new ToggleAllCompleted());
     }
     
+    onToggleEdit = (id: string) => {
+        let inputElement = this.refs["edit_" + id] as HTMLInputElement;
+        Store.dispatch(new ToggleEditItem(id));
+    }
+    
+    componentDidUpdate() {
+        if (Store.getState().editItemId) {
+            let inputElement = this.refs["edit_" + Store.getState().editItemId] as HTMLInputElement;
+            inputElement.focus();    
+        }
+    }
+    
+    onEditEnd = (id: string) => {
+        let inputElement = this.refs["edit_" + id] as HTMLInputElement;
+        Store.dispatch(new ToggleEditItem(null));
+        Store.dispatch(new UpdateItem(id, inputElement.value));
+    }
+    
+    onChange = (id: string) => {
+        let inputElement = this.refs["edit_" + id] as HTMLInputElement;
+        Store.dispatch(new UpdateEditItemValue(inputElement.value));
+    }
+    
     render() {
-        let {items, itemsLeft, filter} = Store.getState();
+        let {items, itemsLeft, filter, editItemId, editItemText} = Store.getState();
         
         return (
             <section className="main">
@@ -33,12 +59,23 @@ export default class Main extends React.Component<any, any> {
                                 (!item.completed && filter == FilterType.Active) ||
                                 filter == FilterType.All) {
                             return (
-                                <li className={item.completed ? "completed" : ""}>
+                                <li ref={item.id} key={item.id} className={
+                                        (item.completed ? "completed" : "") +
+                                        (item.id == editItemId ? " editing" : "")
+                                    }>
                                     <div className="view">
                                         <input className="toggle" type="checkbox" checked={item.completed} onClick={(e) => this.onToggleCompleted(item.id)} />
-                                        <label>{item.text}</label>
+                                        <label onDoubleClick={(e) => this.onToggleEdit(item.id)}>{item.text}</label>
                                         <button className="destroy" onClick={(e) => this.onDestroy(item.id)}></button>
                                     </div>
+                                    <input 
+                                        className="edit" 
+                                        type="text" 
+                                        ref={"edit_" + item.id}
+                                        value={editItemText}
+                                        onChange={(e) => this.onChange(item.id)}
+                                        onBlur={(e) => this.onEditEnd(item.id)} 
+                                        onKeyUp={(e) => { if (e.key == "Enter") this.onEditEnd(item.id); }} />
                                 </li>    
                             );        
                         } else {

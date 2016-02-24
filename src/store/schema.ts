@@ -14,5 +14,7 @@ export interface StateTree {
     items: Item[],
     textboxValue: string,
     itemsLeft: number,
+    editItemId: string,
+    editItemText: string,
     filter: FilterType
 }

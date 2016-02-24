@@ -8,7 +8,9 @@ extendObservable(Store.getState(), {
     items: [],
     textboxValue: '',
     itemsLeft: 0,
-    filter: FilterType.All
+    filter: FilterType.All,
+    editItemId: null,
+    editItemText: null
 });
 
 export default Store;
