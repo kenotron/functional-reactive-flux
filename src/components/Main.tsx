@@ -11,6 +11,13 @@ import {FilterType} from '../store/schema';
 
 @observer
 export default class Main extends React.Component<any, any> {
+    componentDidUpdate() {
+        if (Store.getState().editItemId) {
+            let inputElement = this.refs["edit_" + Store.getState().editItemId] as HTMLInputElement;
+            inputElement.focus();    
+        }
+    }
+    
     onToggleCompleted(id: string) {
         Store.dispatch(new ToggleCompleted(id));
     }
@@ -26,13 +33,6 @@ export default class Main extends React.Component<any, any> {
     onToggleEdit = (id: string) => {
         let inputElement = this.refs["edit_" + id] as HTMLInputElement;
         Store.dispatch(new ToggleEditItem(id));
-    }
-    
-    componentDidUpdate() {
-        if (Store.getState().editItemId) {
-            let inputElement = this.refs["edit_" + Store.getState().editItemId] as HTMLInputElement;
-            inputElement.focus();    
-        }
     }
     
     onEditEnd = (id: string) => {
