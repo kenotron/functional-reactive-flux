@@ -1,6 +1,14 @@
 import ReactiveStore from '../lib/reactiveStore';
-import {StateTree} from './schema';
+import {extendObservable} from 'mobservable';
+import {StateTree, FilterType} from './schema';
 
 var Store = new ReactiveStore<StateTree>();
+
+extendObservable(Store.getState(), {
+    items: [],
+    textboxValue: '',
+    itemsLeft: 0,
+    filter: FilterType.All
+});
 
 export default Store;

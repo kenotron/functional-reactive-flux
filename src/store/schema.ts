@@ -1,3 +1,9 @@
+export enum FilterType {
+    All,
+    Active,
+    Completed
+}
+
 export interface Item {
     id: string,
     text: string,
@@ -5,5 +11,8 @@ export interface Item {
 }
 
 export interface StateTree {
-    items: Item[]
+    items: Item[],
+    textboxValue: string,
+    itemsLeft: number,
+    filter: FilterType
 }

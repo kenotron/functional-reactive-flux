@@ -1,3 +1,5 @@
+var WebpackNotifierPlugin = require('webpack-notifier');
+
 module.exports = {
     entry: './src/index.tsx',
     devtool: 'source-map',
@@ -10,6 +12,9 @@ module.exports = {
         // Add `.ts` and `.tsx` as a resolvable extension.
         extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
     },
+    plugins: [
+        new WebpackNotifierPlugin(),
+    ], 
     module: {
         loaders: [
             // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
