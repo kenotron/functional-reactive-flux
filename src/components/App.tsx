@@ -5,9 +5,7 @@ import Main from './Main';
 import Footer from './Footer';
 
 export default class App extends React.Component<any, any> {
-    render() {
-        let items = [];
-        
+    render() {     
         return (
             <div>
                 <Header />                
