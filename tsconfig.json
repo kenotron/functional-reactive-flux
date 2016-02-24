@@ -2,8 +2,9 @@
     "compilerOptions": {
         "jsx": "react",
         "target": "es5",
-        "module": "system",
-        "outFile": "dist/main.js"
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "sourceMap": true        
     },
     "exclude": [
         "node_modules",
