@@ -51,7 +51,7 @@ export default class Main extends React.Component<any, any> {
         
         return (
             <section className="main">
-                <input className="toggle-all" type="checkbox" onClick={this.onToggleAllCompleted} checked={itemsLeft == 0}/>
+                <input className="toggle-all" type="checkbox" onChange={this.onToggleAllCompleted} checked={itemsLeft == 0}/>
                 <label htmlFor="toggle-all">Mark all as complete</label>
                 <ul className="todo-list">
                     {items && items.map(item => {
