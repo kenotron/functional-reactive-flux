@@ -1,7 +1,7 @@
-import {Mutator} from '../lib/mutator';
+import {Action} from '../lib/action';
 import Store from '../store/store';
 
-export default class ToggleCompleted implements Mutator {
+export default class ToggleCompleted implements Action {
     constructor(private id: string) { }
 
     execute() {

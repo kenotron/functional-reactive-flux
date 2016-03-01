@@ -1,5 +1,5 @@
-import {observable, transaction} from 'mobservable';
-import Mutator, {Action} from './Mutator';
+import {observable, transaction} from 'mobx';
+import {Action, ExecuteFunction} from './Action';
 
 export default class ReactiveStore<T> {
     private state: T = <T>observable({});
@@ -8,11 +8,11 @@ export default class ReactiveStore<T> {
         return this.state;
     }
     
-    dispatch = (mutator: Action | Mutator): void => {
-        if ((<Mutator>mutator).execute) {
-            transaction(() => { (<Mutator>mutator).execute(this.dispatch); });            
+    dispatch = (action: Action | ExecuteFunction): void => {
+        if ((<Action>action).execute) {
+            transaction(() => { (<Action>action).execute(this.dispatch); });            
         } else {
-            transaction(() => { (<Action>mutator)(this.dispatch); });
+            transaction(() => { (<ExecuteFunction>action)(this.dispatch); });
         }
     }
 }

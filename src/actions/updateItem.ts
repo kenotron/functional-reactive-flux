@@ -1,7 +1,7 @@
-import {Mutator} from '../lib/mutator';
+import {Action} from '../lib/action';
 import Store from '../store/store';
 
-export default class UpdateItem implements Mutator {
+export default class UpdateItem implements Action {
     constructor(private id: string, private text: string) { }
 
     execute() {

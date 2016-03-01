@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {observer} from 'mobservable-react';
+import {observer} from 'mobx-react';
 import Store from '../store/store';
-import RemoveAllCompleted from '../mutators/removeAllCompleted';
-import SetFilter from '../mutators/setFilter';
+import RemoveAllCompleted from '../actions/removeAllCompleted';
+import SetFilter from '../actions/setFilter';
 import {FilterType} from '../store/schema';
 
 @observer
@@ -10,14 +10,14 @@ export default class Footer extends React.Component<any, any> {
     onClearCompleted = () => {
         Store.dispatch(new RemoveAllCompleted());
     }
-    
+
     onSetFilter = (filter: FilterType) => {
         Store.dispatch(new SetFilter(filter));
     }
-    
+
     render() {
         let {itemsLeft, filter} = Store.getState();
-        
+
         return (
             <footer className="footer">
                 <span className="todo-count">{itemsLeft} Left</span>

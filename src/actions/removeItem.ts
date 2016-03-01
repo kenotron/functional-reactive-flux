@@ -1,7 +1,7 @@
-import {Mutator} from '../lib/mutator';
+import {Action} from '../lib/action';
 import Store from '../store/store';
 
-export default class RemoveItem implements Mutator {
+export default class RemoveItem implements Action {
     constructor(private id: string) { }
 
     execute() {
@@ -13,12 +13,12 @@ export default class RemoveItem implements Mutator {
                 found = index;
                 break;
             }
-            
+
             index++;
         }
-        
+
         items.splice(index, 1);
-        
+
         Store.getState().itemsLeft = Math.max(0, Store.getState().itemsLeft - 1);
     }
 }

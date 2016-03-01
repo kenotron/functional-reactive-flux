@@ -1,4 +1,4 @@
-import {Mutator} from '../lib/mutator';
+import {Action} from '../lib/action';
 import Store from '../store/store';
 
 function guid() {
@@ -9,7 +9,7 @@ function guid() {
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 }
 
-export default class AddItem implements Mutator {
+export default class AddItem implements Action {
     constructor(private text: string) { }
 
     execute() {

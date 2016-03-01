@@ -1,7 +1,7 @@
-import {Mutator} from '../lib/mutator';
+import {Action} from '../lib/action';
 import Store from '../store/store';
 
-export default class UpdateTextboxValue implements Mutator {
+export default class UpdateTextboxValue implements Action {
     constructor(private text: string) { }
 
     execute() {

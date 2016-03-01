@@ -1,5 +1,5 @@
 import ReactiveStore from '../lib/reactiveStore';
-import {extendObservable} from 'mobservable';
+import {extendObservable} from 'mobx';
 import {StateTree, FilterType} from './schema';
 
 var Store = new ReactiveStore<StateTree>();

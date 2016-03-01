@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mobservable": "^1.2.5",
-    "mobservable-react": "^2.1.5",
+    "mobx": "^2.0.0",
+    "mobx-react": "^3.0.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "todomvc-app-css": "^2.0.4",

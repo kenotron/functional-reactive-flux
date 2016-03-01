@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Store from '../store/store';
-import {observer} from 'mobservable-react';
-import ToggleCompleted from '../mutators/toggleCompleted';
-import RemoveItem from '../mutators/removeItem';
-import ToggleAllCompleted from '../mutators/toggleAllCompleted';
-import ToggleEditItem from '../mutators/toggleEditItem';
-import UpdateEditItemValue from '../mutators/updateEditItemValue';
-import UpdateItem from '../mutators/UpdateItem';
+import {observer} from 'mobx-react';
+import ToggleCompleted from '../actions/toggleCompleted';
+import RemoveItem from '../actions/removeItem';
+import ToggleAllCompleted from '../actions/toggleAllCompleted';
+import ToggleEditItem from '../actions/toggleEditItem';
+import UpdateEditItemValue from '../actions/updateEditItemValue';
+import UpdateItem from '../actions/UpdateItem';
 import {FilterType} from '../store/schema';
 
 @observer
